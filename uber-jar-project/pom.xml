@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.acme.tutorials</groupId>
-	<artifactId>hollow-jar-example</artifactId>
+	<artifactId>uber-jar-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -16,7 +16,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -24,7 +24,7 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<finalName>${project.artifactId}</finalName>
 
@@ -34,15 +34,32 @@
 					<artifactId>maven-war-plugin</artifactId>
 					<version>3.2.3</version>
 				</plugin>
+				<plugin>
+					<groupId>fish.payara.maven.plugins</groupId>
+					<artifactId>payara-micro-maven-plugin</artifactId>
+					<version>1.0.6</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
-
+		
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>fish.payara.maven.plugins</groupId>
+				<artifactId>payara-micro-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
