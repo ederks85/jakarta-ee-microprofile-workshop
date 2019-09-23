@@ -1,4 +1,4 @@
-package org.eclipsecon.example.hollowjar.rest;
+package nl.ordina.example.hollowjar.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

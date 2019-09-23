@@ -1,4 +1,4 @@
-package org.eclipsecon.example.uberjar.rest;
+package nl.ordina.example.uberjar.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

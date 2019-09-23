@@ -1,4 +1,4 @@
-package org.eclipsecon.example.applicationserver.filter;
+package nl.ordina.example.applicationserver.filter;
 
 import java.io.IOException;
 

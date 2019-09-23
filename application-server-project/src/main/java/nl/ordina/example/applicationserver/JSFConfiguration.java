@@ -1,4 +1,4 @@
-package org.eclipsecon.example.applicationserver;
+package nl.ordina.example.applicationserver;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.annotation.FacesConfig;
