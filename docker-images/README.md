@@ -15,7 +15,3 @@ make help
 
 [https://github.com/IvoNet/docker-make](https://github.com/IvoNet/docker-make)
 
-# License
-
-Licenses are as described in the individual files and of not 
-otherwise specified the Apache 2.0 license applies.
