@@ -1,4 +1,4 @@
-package org.eclipsecon.example.hollowjar.rest;
+package nl.ordina.example.uberjar.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,6 +12,6 @@ public class HelloEndpoint {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response greeting() {
-		return Response.ok("Hello from Payara Micro").build();
+		return Response.ok("Hello from Uber JAR Payara Micro").build();
 	}
 }
