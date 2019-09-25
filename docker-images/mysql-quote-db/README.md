@@ -16,7 +16,7 @@ make mysql-quote-db
 * for release
 
 ```bash
-make release-myqsl-quote-db
+make release-mysql-quote-db
 ```
 
 Don't forget to edit the `makefile.env` to set the correct values for your release
