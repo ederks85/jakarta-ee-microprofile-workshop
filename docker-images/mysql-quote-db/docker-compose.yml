@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mysql:
+    image: ivonet/mysql-quote-db
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - backend
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.7
+    ports:
+      - "8888:80"
+    links:
+      - mysql
+    environment:
+      - MYSQL_USERNAME=root
+      - MYSQL_ROOT_PASSWORD=secret
+      - PMA_HOST=mysql
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  mysql-data:
+    driver: local
