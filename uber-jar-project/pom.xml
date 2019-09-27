@@ -14,6 +14,12 @@
 				<artifactId>jakarta.jakartaee-web-api</artifactId>
 				<version>8.0.0</version>
 			</dependency>
+			<dependency>
+				<groupId>org.eclipse.microprofile</groupId>
+				<artifactId>microprofile</artifactId>
+				<version>2.2</version>
+				<type>pom</type>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	
@@ -21,6 +27,12 @@
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.microprofile</groupId>
+			<artifactId>microprofile</artifactId>
+			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
