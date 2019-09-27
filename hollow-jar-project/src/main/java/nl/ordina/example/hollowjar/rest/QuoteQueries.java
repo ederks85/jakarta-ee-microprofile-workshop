@@ -1,6 +1,6 @@
-package nl.ordina.example.applicationserver.rest;
+package nl.ordina.example.hollowjar.rest;
 
-import nl.ordina.example.applicationserver.domain.Quotes;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -17,11 +17,12 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public class QuoteQueries {
 
 	@Inject
-	private Quotes quotes;
+	@RestClient
+	private QuotesBackendClient quotesBackendClient;
 
 	@GET
-	@Path("/random")
+	@Path("/random/backend")
 	public Response getRandomQuote() {
-		return Response.ok(quotes.getRandonQuote()).build();
+		return Response.ok(quotesBackendClient.getRandomQuoteFromBackend()).build();
 	}
 }
