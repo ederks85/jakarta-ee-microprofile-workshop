@@ -1,1 +1,0 @@
-docker run --name "payara-dev" --rm -v "$(pwd)/artifact:/autodeploy" -p 8080:8080 ivonet/payara-full-jndi-quote:1.0
