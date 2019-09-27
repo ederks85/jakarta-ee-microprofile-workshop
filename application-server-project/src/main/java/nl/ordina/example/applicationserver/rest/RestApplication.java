@@ -1,4 +1,4 @@
-package nl.ordina.example.uberjar.rest;
+package nl.ordina.example.applicationserver.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

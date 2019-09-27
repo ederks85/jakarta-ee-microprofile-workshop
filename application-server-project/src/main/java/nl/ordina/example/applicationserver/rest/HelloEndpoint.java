@@ -1,4 +1,4 @@
-package nl.ordina.example.uberjar.rest;
+package nl.ordina.example.applicationserver.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,6 +12,6 @@ public class HelloEndpoint {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response greeting() {
-		return Response.ok("Hello from Uber JAR Payara Micro").build();
+		return Response.ok("Hello from Payara Application Server 5.193").build();
 	}
 }

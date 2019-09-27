@@ -1,4 +1,4 @@
-package nl.ordina.example.applicationserver;
+package nl.ordina.example.uberjar;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.annotation.FacesConfig;

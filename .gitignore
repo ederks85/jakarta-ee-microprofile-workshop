@@ -1,2 +1,8 @@
+# IntelliJ
+.idea
+
 # MacOS
 **/.DS_Store
+
+# jenv
+.java-version
