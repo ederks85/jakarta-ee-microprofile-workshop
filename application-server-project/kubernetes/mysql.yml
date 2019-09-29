@@ -7,7 +7,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 3066
+    - port: 3306
   selector:
     app: database
 ---
@@ -32,4 +32,4 @@ spec:
           image: ivonet/mysql-quote-db:1.0
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 3066
+            - containerPort: 3306
