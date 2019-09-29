@@ -25,11 +25,9 @@ services:
 
   application-server-project:
     image: ivonet/application-server-project
-    build:
-      context: ./application-server-project
     ports:
       - "8080:8080"
-#      - "4848:4848"
+      - "4848:4848"
     links:
       - mysql
     depends_on:
