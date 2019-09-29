@@ -12,7 +12,6 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <docker.user>ivonet</docker.user>
     </properties>
 
     <dependencies>
@@ -30,35 +29,13 @@
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.3</version>
-                <configuration>
-                    <warName>${project.build.finalName}</warName>
-                    <outputDirectory>artifact</outputDirectory>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+§                <version>3.8.1</version>
                 <configuration>
                     <release>11</release>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
-                <groupId>org.codehaus.mojo</groupId>
-                <version>1.6.0</version>
-                <executions>
-                    <execution>
-                        <id>Dockerfile</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>/usr/local/bin/docker</executable>
-                            <commandlineArgs>build -t ${docker.user}/${project.artifactId} .</commandlineArgs>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
