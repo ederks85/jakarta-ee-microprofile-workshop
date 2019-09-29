@@ -22,6 +22,6 @@ public class QuoteQueries {
 	@GET
 	@Path("/random")
 	public Response getRandomQuote() {
-		return Response.ok(quotes.getRandonQuote()).build();
+		return Response.ok(quotes.getRandomQuote()).build();
 	}
 }
