@@ -3,32 +3,32 @@ kind: Service
 metadata:
   name: mysql
   labels:
-    app: database
+    app: mysql
 spec:
   type: NodePort
   ports:
     - port: 3306
   selector:
-    app: database
+    app: mysql
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: database
+  name: mysql
   labels:
-    app: database
+    app: mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: database
+      app: mysql
   template:
     metadata:
       labels:
-        app: database
+        app: mysql
     spec:
       containers:
-        - name: database
+        - name: mysql
           image: ivonet/mysql-quote-db:1.0
           imagePullPolicy: IfNotPresent
           ports:
