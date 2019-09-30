@@ -12,8 +12,6 @@ services:
     image: phpmyadmin/phpmyadmin:4.7
     ports:
       - "8888:80"
-    links:
-      - mysql
     environment:
       - MYSQL_USERNAME=root
       - MYSQL_ROOT_PASSWORD=secret
@@ -24,16 +22,22 @@ services:
       - backend
 
   application-server-project:
-    image: ivonet/application-server-project
+    image: application-server-project
     ports:
       - "8080:8080"
       - "4848:4848"
-    links:
-      - mysql
     depends_on:
       - mysql
     networks:
-      - frontend
+      - backend
+
+  hollow-jar-project:
+    image: hollow-jar-project
+    ports:
+      - "9090:8080"
+    depends_on:
+      - application-server-project
+    networks:
       - backend
 
 # TODO: add front-end
