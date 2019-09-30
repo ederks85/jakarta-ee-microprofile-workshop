@@ -9,8 +9,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-        <docker.user>ivonet</docker.user>
     </properties>
 
     <dependencies>
@@ -40,25 +38,6 @@
                 <configuration>
                     <release>11</release>
                 </configuration>
-            </plugin>
-            <plugin>
-                <!-- TODO find better plugin-->
-                <artifactId>exec-maven-plugin</artifactId>
-                <groupId>org.codehaus.mojo</groupId>
-                <version>1.6.0</version>
-                <executions>
-                    <execution>
-                        <id>Dockerfile</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>/usr/local/bin/docker</executable>
-                            <commandlineArgs>build -t ${docker.user}/${project.artifactId} .</commandlineArgs>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
