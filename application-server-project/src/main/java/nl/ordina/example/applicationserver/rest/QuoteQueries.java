@@ -21,7 +21,15 @@ public class QuoteQueries {
 
 	@GET
 	@Path("/random")
-	public Response getRandomQuote() {
+	public Response getRandomQuote() throws Exception {
+		// Simulate flaky behaviour
+		long randomId = Double.valueOf(Math.random() * 10d).longValue();
+
+		if (randomId >= 0l && randomId < 4l) {
+			throw new RuntimeException("Random exception from Quote backend");
+		} else if (randomId >= 4l && randomId < 6l) {
+			Thread.sleep(10000);
+		}
 		return Response.ok(quotes.getRandomQuote()).build();
 	}
 }
