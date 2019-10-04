@@ -16,7 +16,7 @@ docker build -t uber-jar-project .
 
 ### Run Locally
 ```bash
-docker run --rm -p 7070:7070 uber-jar-project
+docker run --rm -p 7070:8080 uber-jar-project
 ``` 
 
 ## Notes
