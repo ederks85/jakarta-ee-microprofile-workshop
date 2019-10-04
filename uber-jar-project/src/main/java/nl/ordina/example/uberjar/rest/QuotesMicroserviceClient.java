@@ -15,6 +15,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public interface QuotesMicroserviceClient {
 
     @GET
-    @Path("/random")
+    @Path("/random/backend")
     Quote getRandomQuoteFromMicroservice();
 }
