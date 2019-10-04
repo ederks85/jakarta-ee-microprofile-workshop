@@ -21,3 +21,6 @@ java -jar /absolute/path/to/payara-micro-5.193.jar --port 9090 --deploy target/h
 ```bash
 docker run --rm -p 9090:8080 -v /absolute/path/to/hollow-jar-project/target/:/opt/payara/deployments payara/micro:5.193
 ```
+
+## Notes
+- Since Payara isn't currently providing a `payara/micro` Docker image with a Java version greater than Java 8, we have to compile explicitly to Java 8.
