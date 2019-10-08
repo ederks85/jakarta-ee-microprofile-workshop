@@ -27,8 +27,8 @@
 	</context-param>
 
 	<context-param>   
-		<param-name>org.richfaces.skin</param-name>
-		<param-value>emeraldTown</param-value>   
+		<param-name>primefaces.THEME</param-name>
+		<param-value>vader</param-value>   
 	</context-param> 
 
 	<welcome-file-list>

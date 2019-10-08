@@ -26,11 +26,24 @@
             <scope>provided</scope>
         </dependency>
 		<dependency>
-		    <groupId>org.richfaces</groupId>
-		    <artifactId>richfaces</artifactId>
-		    <version>4.5.17.Final</version>
+		    <groupId>org.primefaces</groupId>
+		    <artifactId>primefaces</artifactId>
+		    <version>7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
 		</dependency>
     </dependencies>
+
+	<repositories>
+		<repository>
+			<id>primefaces-maven-repository</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>https://repository.primefaces.org</url>
+		</repository>
+	</repositories>
 
     <build>
         <finalName>${project.artifactId}</finalName>
