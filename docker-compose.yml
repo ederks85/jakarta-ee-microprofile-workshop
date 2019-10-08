@@ -40,21 +40,17 @@ services:
     networks:
       - backend
 
-# TODO: add front-end
-
-#  web:
-#    build:
-#      context: ./web
-#      dockerfile: Dockerfile
-#    image: web
-#    ports:
-#      - "3000:3000"
-#    links:
-#      - quote-service
-#    depends_on:
-#      - quote-service
-#    networks:
-#      - frontend
+  uber-jar-project:
+    image: uber-jar-project
+    build:
+      context: ./uber-jar-project
+    ports:
+      - "7070:8080"
+    depends_on:
+      - hollow-jar-project
+    networks:
+      - backend
+      - frontend
 
 networks:
   frontend:
