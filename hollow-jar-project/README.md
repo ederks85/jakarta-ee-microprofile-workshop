@@ -6,8 +6,6 @@ This project contains a Jakarta EE 8 application that retrieves "Quote of the da
 You can build and deploy a new version of the application on a Docker image in order to ship it.
 ```bash
 mvn clean verify
-``` 
-```bash
 docker build -t hollow-jar-project .
 ``` 
 

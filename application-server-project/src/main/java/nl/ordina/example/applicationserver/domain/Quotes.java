@@ -11,7 +11,7 @@ public class Quotes {
     private EntityManager entityManager;
 
     public Quote getRandomQuote() {
-        long randomId = Double.valueOf(Math.random() * getQuoteAmount()).longValue();
+        final long randomId = Double.valueOf(Math.random() * getQuoteAmount()).longValue();
 
         return this.entityManager.find(Quote.class, randomId);
     }

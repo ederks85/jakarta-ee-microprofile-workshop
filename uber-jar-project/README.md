@@ -9,8 +9,6 @@ You can build and deploy a new version of the application on a Docker image in o
 
 ```bash
 mvn clean install
-``` 
-```bash
 docker build -t uber-jar-project .
 ``` 
 

@@ -23,13 +23,14 @@ public class QuoteQueries {
 	@Path("/random")
 	public Response getRandomQuote() throws Exception {
 		// Simulate flaky behaviour
-		long randomId = Double.valueOf(Math.random() * 10d).longValue();
+		final long randomId = Double.valueOf(Math.random() * 10d).longValue();
 
-		if (randomId >= 0l && randomId < 4l) {
+		if ((0L <= randomId) && (4L > randomId)) {
 			throw new RuntimeException("Random exception from Quote backend");
-		} else if (randomId >= 4l && randomId < 6l) {
+		}
+		if ((4L <= randomId) && (6L > randomId)) {
 			Thread.sleep(10000);
 		}
-		return Response.ok(quotes.getRandomQuote()).build();
+		return Response.ok(this.quotes.getRandomQuote()).build();
 	}
 }
