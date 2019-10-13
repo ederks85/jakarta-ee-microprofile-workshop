@@ -29,7 +29,7 @@
                 <version>3.2.3</version>
                 <configuration>
                     <warName>${project.build.finalName}</warName>
-                    <outputDirectory>artifact</outputDirectory>
+                    <outputDirectory>${project.basedir}/artifact</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>

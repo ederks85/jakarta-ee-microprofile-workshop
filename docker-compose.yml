@@ -23,6 +23,8 @@ services:
 
   application-server-project:
     image: application-server-project
+    build:
+      context: ./application-server-project/
     ports:
       - "8080:8080"
       - "4848:4848"
@@ -33,6 +35,8 @@ services:
 
   hollow-jar-project:
     image: hollow-jar-project
+    build:
+      context: ./hollow-jar-project/
     ports:
       - "9090:8080"
     depends_on:
@@ -43,7 +47,7 @@ services:
   uber-jar-project:
     image: uber-jar-project
     build:
-      context: ./uber-jar-project
+      context: ./uber-jar-project/
     ports:
       - "7070:8080"
     depends_on:

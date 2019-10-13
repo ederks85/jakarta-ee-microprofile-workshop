@@ -2,6 +2,39 @@
 
 A workshop on how to build microservices using Jakarta EE and MicroProfile
 
+# Prerequisites
+
+Minimal requirements are:
+
+- Java 11
+- Maven
+- Docker
+
+# Build
+
+To build the maven projects:
+
+```bash
+mvn clean install
+```
+
+To build the docker images:
+
+```bash
+docker-compose build
+```
+
+# Run
+
+## Docker Compose
+
+```bash
+docker-compose up [-d]
+```
+
+# Other
+
+Please follow the instructions as described [here](https://docs.google.com/document/d/1b8rxitAW3IOdzBslR0FiMS3T8Z6xNdZtIK-32UfJlQw):
 
 ## License
 
