@@ -37,7 +37,7 @@ services:
     networks:
       - backend
     volumes:
-      - ./artifact:/autodeploy
+      - ./artifact:/opt/payara/payara5/glassfish/domains/domain1/autodeploy
 
 networks:
   backend:
