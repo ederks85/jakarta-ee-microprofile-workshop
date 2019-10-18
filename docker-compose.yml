@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  mysql:
+    image: ivonet/mysql-quote-db:${VERSION:-1.0}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - backend
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.7
+    ports:
+      - "8888:80"
+    environment:
+      - MYSQL_USERNAME=root
+      - MYSQL_ROOT_PASSWORD=secret
+      - PMA_HOST=mysql
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+  application-server-project:
+    image: application-server-project
+    build:
+      context: ./application-server-project/
+    ports:
+      - "8080:8080"
+      - "4848:4848"
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+  hollow-jar-project:
+    image: hollow-jar-project
+    build:
+      context: ./hollow-jar-project/
+    ports:
+      - "9090:8080"
+    depends_on:
+      - application-server-project
+    networks:
+      - backend
+
+  uber-jar-project:
+    image: uber-jar-project
+    build:
+      context: ./uber-jar-project/
+    ports:
+      - "7070:8080"
+    depends_on:
+      - hollow-jar-project
+    networks:
+      - backend
+      - frontend
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  mysql-data:
+    driver: local

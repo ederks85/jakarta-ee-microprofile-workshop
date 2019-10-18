@@ -17,6 +17,7 @@ local.properties
 
 # External tool builders
 .externalToolBuilders/
+
 # Locally stored "Eclipse launch configurations"
 *.launch
 
@@ -151,4 +152,3 @@ nbdist/
 
 # Project
 artifact
-payara-micro-5.193.jar

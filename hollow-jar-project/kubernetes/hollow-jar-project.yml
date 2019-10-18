@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hollow-jar-project
+  labels:
+    app: hollow-jar-project
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+  selector:
+    app: hollow-jar-project
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hollow-jar-project
+  labels:
+    app: hollow-jar-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hollow-jar-project
+  template:
+    metadata:
+      labels:
+        app: hollow-jar-project
+    spec:
+      containers:
+        - name: hollow-jar-project
+          image: hollow-jar-project:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
