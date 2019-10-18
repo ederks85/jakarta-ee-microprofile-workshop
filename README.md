@@ -377,6 +377,11 @@ or
 http://localhost:7070/uber-jar-project/rest/quotes/random/microservice
 ```
 
+---
+Note: it can apparently vary on which of the former URL's the Uber JAR will be deployed. Therefore, these two options are given where one should match for your situation. 
+
+---
+
 The output should be similar to the following JSON response:
 ```json
 {
@@ -407,7 +412,10 @@ docker-compose down
 ```
 
 ## Part 2: Cloud - local setup
-This part will cover deploying the former setup from Part 1 in Minikube. Before you start, make sure you have shut down all running (Docker) services.
+This part will cover deploying the former setup from Part 1 in Minikube. Before you start, make sure you have shut down all running (Docker) services on every project with:
+```bash
+docker-compose down
+```
 
 ### Assignment 4: Run the application-server-project in Minikube
 Open a terminal and start the Kubernetes dashboard:
@@ -463,7 +471,7 @@ minikube service application-server-project
 ```
 
 ---
-**Note:** the last command opens the application-server-project in your browser (don’t worry about the ‘This site can’t be reached’ message. Append ‘/application-server-project/rest/quotes/random’ at the end of the URL in your browser, to get a response from this endpoint.
+**Note:** the last command opens the application-server-project in your browser (don’t worry about the ‘This site can’t be reached’ message, or if you land at the default Payara welcome page. Append ‘/application-server-project/rest/quotes/random’ at the end of the URL in your browser, to get a response from this endpoint.
 
 ---
 

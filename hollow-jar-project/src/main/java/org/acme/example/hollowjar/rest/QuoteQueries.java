@@ -31,7 +31,7 @@ public class QuoteQueries {
     private QuotesBackendClient quotesBackendClient;
 
     @GET
-    @Path("/random")
+    @Path("/random/backend")
     public Response getRandomQuote() throws Exception {
         return Response.ok("Hello EclipseCon 2019!").build();
     }
