@@ -53,9 +53,9 @@ Build the project with Maven:
 mvn package
 ```
 
-Build the Docker image with the application-service-project.war artifact on it:
+Build the Docker image with the application-server-project.war artifact on it:
 ```bash
-docker build -t application-service-project .
+docker build -t application-server-project .
 ```
 
 Run the application in Docker (add the -d parameter for detached mode):
@@ -534,14 +534,7 @@ minikube service uber-jar-project
 ```
 
 ---
-**Note:** the last command opens the uber-jar-project in your browser (don’t worry about the ‘This site can’t be reached’ message. Append ‘/rest/quotes/random/microservice’ at the end of the URL in your browser, to get a response from this endpoint that calls the hollow-jar-project service that calls the application-server-project service to get its data.
-
----
-
-Open the JSF application in your browser:
-```bash
-minikube service uber-jar-project
-```
+**Note:** the last command opens the uber-jar-project in your browser (don’t worry about the ‘This site can’t be reached’ message. Otherwise it is likely that it will show the JSF GUI since this is deployed on the root context "/". If you want to access the REST endpoint, append ‘/rest/quotes/random/microservice’ at the end of the URL in your browser, to get a response from this endpoint that calls the hollow-jar-project service to get its data.
 
 ## Part 3: Scaling
 This part will show how to scale your applications in order to handle increased traffic. It also shows how to do zero downtime deployments. Zero downtime deployments enable you to deploy your changed application, without impact on the user experience. Users will not notice that a new application is being deployed, because there will be no downtime!
