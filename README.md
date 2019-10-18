@@ -430,8 +430,13 @@ minikube dashboard
 
 Open a new terminal and start minikube:
 ```bash
-minikube start
+minikube start --cpus 4 --memory 8192
 ```
+
+---
+**Note:** Minikube appears to run unstable with it's default memory and CPU settings. We recommend settings it to 4 CUP's and 8GB of RAM, but this can be tweaked to meet your system's specifications of course.
+
+---
 
 Reuse the docker daemon inside Kubernetes:
 ```bash
