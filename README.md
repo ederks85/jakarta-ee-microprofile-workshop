@@ -470,7 +470,7 @@ minikube service application-server-project
 ### Assignment 5: Run the hollow-jar-project in Minikube and connect it to the application-server-project
 Build and deploy the hollow-jar-project:
 ```bash
-cd ../hollow-jar-project
+cd hollow-jar-project
 ```
 
 Build the project with Maven:
@@ -502,7 +502,7 @@ minikube service hollow-jar-project
 
 Build and deploy the hollow-jar service:
 ```bash
-cd ../uber-jar-project
+cd uber-jar-project
 ```
 
 Build the project with Maven:
