@@ -250,7 +250,7 @@ Shut down your running Docker containers in order to finish this assignment:
 docker-compose down
 ```
 
-### Assignment 3: Run an application as a Uber JAR rntime (Payara Micro)
+### Assignment 3: Run an application as a Uber JAR runtime (Payara Micro)
 This project covers the following Jakarta EE and MicroProfile components:
 - JSF
 - CDI
@@ -343,8 +343,8 @@ mvn install
 **Note:** this command will download payara-micro:5.193 via Maven. In case this is not working, you can alternatively place payara-micro-5.193.jar from the preparations in the root of the uber-jar-project and run the following commands:
 ```bash
 mvn package
-```
 java -jar payara-micro-5.193.jar --deploy target/uber-jar-project.war --outputUberJar target/uber-jar-project-microbundle.jar
+```
 
 ---
 
@@ -404,6 +404,7 @@ http://localhost:7070/uber-jar-project/
 ```
 
 The visual output should be similar to the following:
+
 ![JSF](./docs/jsf-gui.png "JSF")
 
 Shut down your running Docker containers in order to finish this assignment:
@@ -452,7 +453,6 @@ eval $(minikube docker-env)
 Deploy the database to Kubernetes:
 ```bash
 cd application-server-project
-
 kubectl apply -f kubernetes/mysql.yml
 ```
 
