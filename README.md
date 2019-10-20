@@ -541,10 +541,15 @@ minikube service uber-jar-project
 ---
 **Note:** the last command opens the uber-jar-project in your browser (don’t worry about the ‘This site can’t be reached’ message. Otherwise it is likely that it will show the JSF GUI since this is deployed on the root context "/". If you want to access the REST endpoint, append ‘/rest/quotes/random/microservice’ at the end of the URL in your browser, to get a response from this endpoint that calls the hollow-jar-project service to get its data.
 
-## Part 3: Scaling
+## Part 3: Scaling and rolling updates
 This part will show how to scale your applications in order to handle increased traffic. It also shows how to do zero downtime deployments. Zero downtime deployments enable you to deploy your changed application, without impact on the user experience. Users will not notice that a new application is being deployed, because there will be no downtime!
 
 ### Assignment 7: Scale the uber-jar-project in Minikube
+You command prompt should be in the uber-jar-project folder. If not, then change to this folder
+```bash
+cd uber-jar-project
+```
+
 Scale the number of replicas of the uber-jar-project to 2:
 ```bash
 kubectl scale deployments/uber-jar-project --replicas=2
@@ -553,8 +558,132 @@ kubectl scale deployments/uber-jar-project --replicas=2
 Open the dashboard in your browser. You should see that the number of pods of the uber-jar-project is 2.
 
 ### Assignment 8: Zero downtime deployment
-In order to make it a visible change, you need to change the theme of the uber-jar-project. Change the value of the context-param primefaces.THEME from vader to bootstrap in the web.xml file.
-Change the following
+In order to have 2 replicas of a fixed version of the uber-jar-project image and liveness and readiness probes configured, you need to change its Kubernetes configuration.
+
+Change the kubernetes/uber-jar-project.yml Kubernetes configuration
+from
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+ name: uber-jar-project
+ labels:
+   app: uber-jar-project
+spec:
+ type: NodePort
+ ports:
+   - port: 8080
+ selector:
+   app: uber-jar-project
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: uber-jar-project
+ labels:
+   app: uber-jar-project
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: uber-jar-project
+ template:
+   metadata:
+     labels:
+       app: uber-jar-project
+   spec:
+     containers:
+       - name: uber-jar-project
+         image: uber-jar-project:latest
+         imagePullPolicy: IfNotPresent
+         ports:
+           - containerPort: 8080
+```
+
+to
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+ name: uber-jar-project
+ labels:
+   app: uber-jar-project
+spec:
+ type: NodePort
+ ports:
+   - port: 8080
+ selector:
+   app: uber-jar-project
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: uber-jar-project
+ labels:
+   app: uber-jar-project
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     app: uber-jar-project
+ template:
+   metadata:
+     labels:
+       app: uber-jar-project
+   spec:
+     containers:
+       - name: uber-jar-project
+         image: uber-jar-project:v1
+         imagePullPolicy: IfNotPresent
+         ports:
+           - containerPort: 8080
+         livenessProbe:
+           httpGet:
+             path: /health
+             port: 8080
+           initialDelaySeconds: 60
+           failureThreshold: 3
+           periodSeconds: 10
+         readinessProbe:
+           httpGet:
+             path: /health
+             port: 8080
+           initialDelaySeconds: 30
+           failureThreshold: 10
+           periodSeconds: 3
+```
+
+The difference is in the number of replicas (was 1, now 2) and the image tag (was latest, now v1).
+
+The livenessProbe is used by Kubernetes to check whether the container is still ‘live’. This is done by a http GET request call to the configured liveness endpoint (‘/health’). The first request is done after a delay of 60 seconds (initialDelaySeconds), to give the container some time to boot. If the response of this call is successful, then the container is still ‘live’. If the response is not successful for 3 times in total (failureTreshold) with a period of 10 seconds in between the calls (periodSeconds), then the container is not ‘live’ anymore, and will be killed by Kubernetes and a new pod will be started.
+
+The readinessProbe is used by Kubernetes to check whether the container is ‘ready’, to accept traffic. This is done by a http GET request call to the configured readiness endpoint (‘/health’). The first request is done after a delay of 30 seconds (initialDelaySeconds), to give the container some time to boot. If the response of this call is successful, then the service is ‘ready’ to accept traffic. If the response is not successful, for 10 times in total (failureTreshold) with a period of 3 seconds in between the calls (periodSeconds), then the container was not ‘ready’ and will be killed by Kubernetes and a new pod will be started.
+
+Now let’s build version 1 of the uber-jar-project by rolling out the changed Kubernetes configuration.
+
+Tag the docker image to v1
+```bash
+docker build -t uber-jar-project:v1 .
+```
+
+Deploy this version (v1) with 2 replicas to Kubernetes
+```bash
+kubectl apply -f kubernetes/uber-jar-project.yml
+```
+
+Open the dashboard in your browser. You should see that the number of pods of the uber-jar-project is still 2.
+In order to make it a visible change to the uber-jar-project, you need to change the theme of the uber-jar-project. Change the value of the context-param primefaces.THEME from vader to bootstrap in the web.xml file. This changes the black background color of the table:
+
+![JSF](./docs/jsf-gui-vader.png "JSF")
+
+to a white background color:
+
+![JSF](./docs/jsf-gui-bootstrap.png "JSF")
+
+Change the theme in the web.xml file
+from ‘vader’:
 
 ```xml
 <context-param>  
@@ -562,7 +691,7 @@ Change the following
   <param-value>vader</param-value>  
 </context-param>
 ```
-to
+to 'bootstrap':
 
 ```xml
 <context-param>  
@@ -581,7 +710,23 @@ Build the Docker image:
 docker build -t uber-jar-project:v2 .
 ```
 
-Deploy:
-```bash
-kubectl set image deployments/uber-jar-project uber-jar-project=uber-jar-project:v2
+Change the image version in the uber-jar-project Kubernetes configuration
+from ‘v1’:
+
+```yaml
+         image: uber-jar-project:v1
 ```
+
+to ‘v2’:
+
+```yaml
+         image: uber-jar-project:v2
+```
+
+Deploy this new version (v2)
+```bash
+kubectl apply -f kubernetes/uber-jar-project.yml
+```
+
+Now the new version gets deployed. While deploying, the old versions are used to serve requests. When a new version is up, an old version is terminated and will not receive any traffic anymore. In this situation, 1 new and 1 old pod are running. This means that some requests will be served by a new version and some by an old version.
+Then the second new version will be started up. When this new pod is ready, then the last old pod will be terminated and will not receive requests anymore. Now 2 new pods are running that serve all the request. You should only see the new version of the uber-jar-project when you refresh your screen (white background color in the table).
