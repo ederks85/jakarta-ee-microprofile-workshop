@@ -48,6 +48,6 @@ public class QuoteQueries {
 	}
 	
 	private Response fallback() {
-		return Response.status(400).entity(this.jsonb.toJson("Could not retrieve Quotes from the intermediate server")).build();
+		return Response.status(500).entity(this.jsonb.toJson("Could not retrieve Quotes from the intermediate server")).build();
 	}
 }
