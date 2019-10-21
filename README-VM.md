@@ -465,7 +465,7 @@ Open the exposed endpoint of this service in your browser:
 ```bash
 microk8s.kubectl get all --all-namespaces
 ```
-now open the in a browser on your host machine http://192.168.10.100:<32xxx> port of the former 
+now open the in a browser on your host machine http://192.168.10.100:<3xxxx> port of the former 
 command belonging to the application-server-project service. 
 
 ---
@@ -501,7 +501,7 @@ Open the exposed endpoint of this service in your browser:
 ```bash
 microk8s.kubectl get all --all-namespaces
 ```
-now open the in a browser on your host machine http://192.168.10.100:<32xxx> port of the former 
+now open the in a browser on your host machine http://192.168.10.100:<3xxxx> port of the former 
 command belonging to the hollow-jar-project service. 
 
 ---
@@ -538,7 +538,7 @@ Open the exposed endpoint of this service in your browser:
 ```bash
 microk8s.kubectl get all --all-namespaces
 ```
-now open the in a browser on your host machine http://192.168.10.100:<32xxx> port of the former 
+now open the in a browser on your host machine http://192.168.10.100:<3xxxx> port of the former 
 command belonging to the uber-jar-project service. 
 
 ---
@@ -581,7 +581,8 @@ mvn clean install
 
 Build the Docker image:
 ```bash
-docker build -t uber-jar-project:v2 .
+docker build -t localhost:32000/uber-jar-project:v2 .
+docker push localhost:32000/uber-jar-project:v2 
 ```
 
 Deploy:
