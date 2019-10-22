@@ -60,7 +60,7 @@ docker build -t application-server-project .
 
 Run the application in Docker (add the -d parameter for detached mode):
 ```bash
-docker-compose up --build
+docker-compose up
 ```
 
 ---
@@ -220,7 +220,7 @@ docker build -t hollow-jar-project .
 
 Run the application in Docker (add the -d parameter for detached mode):
 ```bash
-docker-compose up --build
+docker-compose up
 ```
 
 ---
@@ -360,7 +360,7 @@ docker build -t uber-jar-project .
 
 Run the application in Docker (add the -d parameter for detached mode):
 ```bash
-docker-compose up --build
+docker-compose up
 ```
 
 ---
