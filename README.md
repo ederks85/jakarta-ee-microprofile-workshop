@@ -431,7 +431,7 @@ minikube dashboard
 
 Open a new terminal and start minikube:
 ```bash
-minikube start --cpus 4 --memory 8192
+minikube start
 ```
 
 ---
