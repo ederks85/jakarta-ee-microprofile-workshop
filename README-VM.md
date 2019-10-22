@@ -60,7 +60,7 @@ docker build -t application-server-project .
 
 Run the application in Docker (add the -d parameter for detached mode):
 ```bash
-docker-compose up --build
+docker-compose up 
 ```
 
 ---
@@ -70,7 +70,7 @@ docker-compose up --build
 
 Open the following URL with a browser or HTTP client to get a random Quote form the running application:
 ```bash
-http://localhost:8080/application-server-project/rest/quotes/random
+http://192.168.10.100:8080/application-server-project/rest/quotes/random
 ```
 The output should be similar to:
 ```json
@@ -121,7 +121,7 @@ mvn package
 
 If you call the former URL again:
 ```bash
-http://localhost:8080/application-server-project/rest/quotes/random
+http://192.168.10.100:8080/application-server-project/rest/quotes/random
 ```
 
 The output should be similar to:
@@ -220,7 +220,7 @@ docker build -t hollow-jar-project .
 
 Run the application in Docker (add the -d parameter for detached mode):
 ```bash
-docker-compose up --build
+docker-compose up 
 ```
 
 ---
@@ -230,7 +230,7 @@ docker-compose up --build
 
 Open the following URL with a browser or HTTP client to get a random Quote form the running application:
 ```bash
-http://localhost:9090/hollow-jar-project/rest/quotes/random/backend
+http://192.168.10.100:9090/hollow-jar-project/rest/quotes/random/backend
 ```
 
 The output should be similar to the following JSON response:
@@ -360,7 +360,7 @@ docker build -t uber-jar-project .
 
 Run the application in Docker (add the -d parameter for detached mode):
 ```bash
-docker-compose up --build
+docker-compose up 
 ```
 
 ---
@@ -370,11 +370,11 @@ docker-compose up --build
 
 Open the following URL with a browser or HTTP client to get a random Quote form the running application:
 ```bash
-http://localhost:7070/rest/quotes/random/microservice
+http://192.168.10.100:7070/rest/quotes/random/microservice
 ```
 or
 ```bash
-http://localhost:7070/uber-jar-project/rest/quotes/random/microservice
+http://192.168.10.100:7070/uber-jar-project/rest/quotes/random/microservice
 ```
 
 ---
@@ -396,11 +396,11 @@ The output should be similar to the following JSON response:
 
 You can also open the JSF GUI via:
 ```bash
-http://localhost:7070/
+http://192.168.10.100:7070/
 ```
 or
 ```bash
-http://localhost:7070/uber-jar-project/
+http://192.168.10.100:7070/uber-jar-project/
 ```
 
 The visual output should be similar to the following:
