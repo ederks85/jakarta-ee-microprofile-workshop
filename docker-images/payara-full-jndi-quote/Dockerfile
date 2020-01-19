@@ -4,6 +4,8 @@ ARG PWD
 LABEL maintainer="IvoNet.nl"
 ENV MYSQL_VERION="5.1.48"
 
+ENV DEPLOY_DIR="/opt/payara/payara5/glassfish/domains/domain1/autodeploy"
+
 ENV PASSWORD ${PWD:-secret}
 RUN echo "AS_ADMIN_PASSWORD=${PASSWORD}">${PAYARA_HOME}/pwd.txt \
  && curl -s "http://central.maven.org/maven2/mysql/mysql-connector-java/$MYSQL_VERION/mysql-connector-java-$MYSQL_VERION.jar" -o "${PAYARA_HOME}/mysql-connector-java-$MYSQL_VERION.jar" \
